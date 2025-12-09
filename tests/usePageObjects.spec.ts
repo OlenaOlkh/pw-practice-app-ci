@@ -28,7 +28,7 @@ test('Parametrized methods', async ({ page }) => {
    // const buffer = await page.screenshot()
   //  console.log(buffer.toString('base64'))
     await pm.onFormLayoutPage().submitInlineFormWithNameEmailAndCheckbox(randomFullName, randomEmail, true)
-    await page.locator('nb-card', {hasText: "Inline Form"}).screenshot({path: 'screenshots/inlineForm.png'
+    await page.locator('nb-card', {hasText: "Inline Form"}).screenshot({path: 'screenshots/inlineForm.png'})
 
     })
    // await pm.onFormLayoutPage().submitInlineFormWithNameEmailAndCheckbox('John Smith', 'smith@test.com', true)
@@ -41,4 +41,3 @@ test('Parametrized methods', async ({ page }) => {
     await pm.navigateTo().formLayoutsPage()
     await pm.navigateTo().datePickerPage()
     })
-})

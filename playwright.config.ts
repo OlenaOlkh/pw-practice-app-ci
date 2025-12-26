@@ -31,6 +31,14 @@ export default defineConfig<TestOptions>({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
+    process.env.CI ? ["dot"] : ["list"],
+    [
+      "@argos-ci/playwright/reporter",
+      {
+        // Upload to Argos on CI only.
+        uploadToArgos: !!process.env.CI,        
+      },
+    ],
     ['html'],   // HTML report, do not open automatically
     ['list'],                       // Console list
     ['junit', { outputFile: 'test-results/result.xml' }]// JUnit XML
@@ -52,6 +60,7 @@ export default defineConfig<TestOptions>({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry', 
+    screenshot: "only-on-failure",
     video: {
       mode: 'off',
      // size: {width: 1920, height: 1080}
